@@ -1,0 +1,16 @@
+---
+- name: Install kube-tron
+  hosts: kube-tron
+  vars:
+    install_dir: /home/ec2-user
+  tasks:
+  - name: Run the deploy script
+    script:
+      chdir: "{{ install_dir }}"
+      cmd: ./deploy.sh
+  - name: reset ssh connection
+    meta: reset_connection
+  - name: Run the build script
+    command:
+      chdir: "{{ install_dir }}/kube-tron"
+      cmd: ./build.sh
