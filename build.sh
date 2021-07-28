@@ -21,8 +21,6 @@ bash -c "cd ../demo-simulator && docker build -t simtron:1.0.0 ."
 # Export/Import images
 #
 
-cd $SCRIPT_DIR
-
 echo Importing nodetron...
 
 docker save nodetron:1.0.0 > nodetron.tar
