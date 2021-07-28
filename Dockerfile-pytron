@@ -1,0 +1,9 @@
+FROM python:3-slim
+
+RUN mkdir /mnt/pythontron
+ADD ./python /mnt/pythontron
+
+RUN cd /mnt/pythontron && python3 -m pip install --no-cache-dir -r requirements.txt -r linux-requirements.txt --user
+
+WORKDIR /mnt/pythontron
+CMD ["python3", "tron.py", "-c", "config/app_config.json"]

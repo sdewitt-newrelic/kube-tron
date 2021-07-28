@@ -1,0 +1,97 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "simulator.fullname" . }}
+  labels:
+    {{- include "simulator.labels" . | nindent 4 }}
+data:
+  scenario.json: |
+    [
+      {
+          "id": "scenarioConsumer",
+          "rpm": "30",
+          "steps": [
+              {
+                  "name": "header",
+                  "params": [
+                      "x-demo-compute-pre-fulfillment",
+                      "[40,60]"
+                  ]
+              },
+              {
+                  "name": "httpGet",
+                  "params": [
+                      "http://ktron-web-portal:6001/api/inventory"
+                  ]
+              }
+          ]
+      },
+      {
+          "id": "scenarioConsumerMemory",
+          "rpm": "0",
+          "steps": [
+              {
+                  "name": "header",
+                  "params": [
+                      "x-demo-compute-pre-fulfillment",
+                      "[40,60]"
+                  ]
+              },
+              {
+                  "name": "header",
+                  "params": [
+                      "x-demo-malloc-pre-login",
+                      "[20,400]"
+                  ]
+              },
+              {
+                  "name": "httpGet",
+                  "params": [
+                      "http://ktron-web-portal:6001/api/inventory"
+                  ]
+              }
+          ]
+      },
+      {
+          "id": "scenarioPortal",
+          "rpm": "3",
+          "steps": [
+              {
+                  "name": "browserStart",
+                  "params": []
+              },
+              {
+                  "name": "browserGoto",
+                  "params": [
+                      "http://ktron-web-portal:6001"
+                  ]
+              },
+              {
+                  "name": "sleepMs",
+                  "params": [
+                      "1000"
+                  ]
+              }
+          ]
+      },
+      {
+          "id": "scenarioReporting",
+          "rpm": "0",
+          "maxCount": 10,
+          "steps": [
+              {
+                  "name": "header",
+                  "params": [
+                      "x-demo-compute-pre-fulfillment",
+                      "[30000,60000]"
+                  ]
+              },
+              {
+                  "name": "httpGet",
+                  "params": [
+                      "http://ktron-warehouse:6002/api/inventory/9"
+                  ]
+              }
+          ]
+      }
+    ]

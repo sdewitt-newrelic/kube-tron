@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "promo.fullname" . }}
+  labels:
+    {{- include "promo.labels" . | nindent 4 }}
+data:
+  app_config.json: |
+    {
+      "id": "login",
+      "display_name": "Telco-Promo Service",
+      "port": {{ .Values.containerPort }},
+      "dependencies": [
+      ],
+      "database": {
+        "name": "",
+        "host": "",
+        "port": "",
+        "user": "",
+        "password": ""
+      }
+    }

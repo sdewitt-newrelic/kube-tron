@@ -1,0 +1,78 @@
+# Default values for kube-tron.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "kubetron"
+
+"web-portal":
+  image:
+    pullPolicy: Never
+  serviceAccount:
+    create: false
+    name: "kubetron"
+
+warehouse:
+  image:
+    pullPolicy: Never
+  serviceAccount:
+    create: false
+    name: "kubetron"
+
+login:
+  image:
+    pullPolicy: Never
+  serviceAccount:
+    create: false
+    name: "kubetron"
+
+promo:
+  image:
+    pullPolicy: Never
+  serviceAccount:
+    create: false
+    name: "kubetron"
+
+billing:
+  image:
+    pullPolicy: Never
+  serviceAccount:
+    create: false
+    name: "kubetron"
+
+fulfillment:
+  image:
+    pullPolicy: Never
+  serviceAccount:
+    create: false
+    name: "kubetron"
+
+inventory:
+  image:
+    pullPolicy: Never
+  serviceAccount:
+    create: false
+    name: "kubetron"
+
+plan:
+  image:
+    pullPolicy: Never
+  serviceAccount:
+    create: false
+    name: "kubetron"
+
+simulator:
+  image:
+    pullPolicy: Never
+  serviceAccount:
+    create: false
+    name: "kubetron"
