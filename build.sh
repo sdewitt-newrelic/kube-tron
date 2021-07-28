@@ -54,11 +54,3 @@ rm simtron.tar
 echo Installing the kube-tron chart...
 
 microk8s helm3 install ktron ./kube-tron/
-
-#
-# Wait on the pods
-#
-
-echo 'Wait until you see all these pods Running...'
-
-microk8s kubectl get pods -w
