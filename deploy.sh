@@ -1,7 +1,5 @@
 #!/bin/bash
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-
 #
 # Install microk8s
 #
@@ -9,7 +7,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 echo Installing microk8s...
 
 sudo amazon-linux-extras install -y epel
-cd /etc/yum.repos.d && sudo wget https://people.canonical.com/~mvo/snapd/amazon-linux2/snapd-amzn2.repo
+bash -c 'cd /etc/yum.repos.d && sudo wget https://people.canonical.com/~mvo/snapd/amazon-linux2/snapd-amzn2.repo'
 sudo yum install -y snapd-2.51-1.amzn2.1
 sudo systemctl enable --now snapd.socket
 
@@ -42,11 +40,11 @@ sudo yum install -y git
 
 echo Cloning the demo repositories...
 
-cd $SCRIPT_DIR
 git clone https://github.com/newrelic/demo-nodetron.git
 git clone https://github.com/newrelic/demo-javatron.git
 git clone https://github.com/newrelic/demo-pythontron.git
 git clone https://github.com/newrelic/demo-simulator.git
+git clone https://github.com/sdewitt-newrelic/kube-tron.git
 
 #
 # Now add aliases

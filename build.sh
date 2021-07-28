@@ -1,7 +1,5 @@
 #!/bin/bash
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-
 #
 # Enable helm and a few other things
 #
@@ -14,10 +12,10 @@ microk8s enable helm3 dns storage
 
 echo Building images...
 
-cd $SCRIPT_DIR/demo-nodetron && docker build -t nodetron:1.0.0 .
-cd $SCRIPT_DIR/demo-javatron && docker build -t javatron:1.0.0 .
-cd $SCRIPT_DIR && docker build -t pythontron:1.0.0 -f ./Dockerfile-pytron ./demo-pythontron
-cd $SCRIPT_DIR/demo-simulator && docker build -t simtron:1.0.0 .
+bash -c "cd ../demo-nodetron && docker build -t nodetron:1.0.0 ."
+bash -c "cd ../demo-javatron && docker build -t javatron:1.0.0 ."
+docker build -t pythontron:1.0.0 -f ./Dockerfile-pytron ../demo-pythontron
+bash -c "cd ../demo-simulator && docker build -t simtron:1.0.0 ."
 
 #
 # Export/Import images
